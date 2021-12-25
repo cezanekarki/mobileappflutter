@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "865010094785",
+    "firebase_url": "https://college-admission-b87ce-default-rtdb.firebaseio.com",
+    "project_id": "college-admission-b87ce",
+    "storage_bucket": "college-admission-b87ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865010094785:android:73ed02c17bd37533f4ba40",
+        "android_client_info": {
+          "package_name": "com.example.admission_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865010094785-dk8fd8lalp6btscqp3tt76j25bcukmkg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6CWWj6N6zwnhT-NfjpJ0BqvGBsLQinIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865010094785-dk8fd8lalp6btscqp3tt76j25bcukmkg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
