@@ -1,6 +1,8 @@
 import 'dart:ui';
+import 'package:admission_system/Controllers/email_sender.dart';
 import 'package:admission_system/Controllers/register_user.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 class add_users extends StatefulWidget {
@@ -20,10 +22,21 @@ class _add_usersState extends State<add_users> {
   final reg_user ru = reg_user();
 
   void _submit(){
+    FocusScope.of(context).unfocus();
     var parsedvalue = int.parse(phoneNumberEditingController.text);
+    String email_receipents=emailEditingController.text;
+    String email_subject="Email and password for PCPS System account";
+    String email_body ="The password for the account ${nameEditingController.text}, (${emailEditingController.text}) is ${passwordEditingController.text}. Please change the password after the login.";
     try{
       ru.signUp(emailEditingController.text, passwordEditingController.text, nameEditingController.text, parsedvalue);
-
+      email_sender().send_email(email_body, email_subject, email_receipents).then((result) => {
+        if (result==null){
+          Fluttertoast.showToast(msg: "Email sent")
+        }
+        /*else{
+          //Fluttertoast.showToast(msg: result)
+        }*/
+      });
     }
     finally{
       clear_text();
@@ -68,15 +81,18 @@ class _add_usersState extends State<add_users> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          title: const Text("Add Users"),
+        ),
       body: SafeArea(
         child: Container(
           decoration: const BoxDecoration(
               color: Color(0xff2980B9),
-              gradient: LinearGradient(
-                  colors: [(Color(0xff2980B9)),(Color(0xff6dd5fa)), (Color(0xffffffff))],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter
-              )
+
           ),
 
           child: Column(
@@ -94,7 +110,7 @@ class _add_usersState extends State<add_users> {
 
 
                       Container(
-                        margin: const EdgeInsets.only(top: 10),
+                        margin: const EdgeInsets.only(top: 5),
                         child: const Text(
                           "Register User",
                           style: TextStyle(
@@ -112,7 +128,7 @@ class _add_usersState extends State<add_users> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
+                height: MediaQuery.of(context).size.height * 0.01,
               ),
               Column(
                 children: <Widget>[
@@ -189,24 +205,25 @@ class _add_usersState extends State<add_users> {
                       ),
                       onChanged: null,
                       decoration: InputDecoration(
-                        errorText: validatePassword(passwordEditingController.text),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: const BorderSide(
-                            width: 2,
+                          errorText: validatePassword(passwordEditingController.text),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            borderSide: const BorderSide(
+                              width: 2,
+                              color:
+                              Colors.black54,
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          hintText: 'Password',
+                          hintStyle: const TextStyle(
                             color:
                             Colors.black54,
-                            style: BorderStyle.solid,
                           ),
-                        ),
-                        hintText: 'Password',
-                        hintStyle: const TextStyle(
-                          color:
-                          Colors.black54,
-                        ),
                           suffixIcon: IconButton(
                               icon: Icon(
-                                  _isObscure ? Icons.visibility : Icons.visibility_off),
+                                  _isObscure ? Icons.visibility : Icons
+                                      .visibility_off),
                               onPressed: () {
                                 setState(() {
                                   _isObscure = !_isObscure;
@@ -214,7 +231,7 @@ class _add_usersState extends State<add_users> {
                                 );
                               })
                       ),
-                      obscureText: true,
+                      obscureText: _isObscure,
                     ),
                   ),
                   SizedBox(

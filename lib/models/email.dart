@@ -4,8 +4,9 @@ class manage_emails{
 
   Future<void> create_emails(String title, String subject, String message)async {
     DocumentReference documentReference =
-    FirebaseFirestore.instance.collection("Email Template").doc(title);
+    FirebaseFirestore.instance.collection("EmailTemplate").doc(title);
     Map<String, Object?> Email_details={
+
       "Title":title,
       "Subject":subject,
       "Message":message
@@ -14,13 +15,13 @@ class manage_emails{
   }
 
   delete_emails(item){
-    DocumentReference documentReference=FirebaseFirestore.instance.collection("Email Template").doc(item);
+    DocumentReference documentReference=FirebaseFirestore.instance.collection("EmailTemplate").doc(item);
     documentReference.delete().whenComplete(() => print("Deleted Successfully"));
   }
 
   update_emails(String title,String subject, String message){
     DocumentReference documentReference =
-    FirebaseFirestore.instance.collection("Email Template").doc(title);
+    FirebaseFirestore.instance.collection("EmailTemplate").doc(title);
     Map<String, Object?> Email_details={
       "Title":title,
       "Subject":subject,

@@ -1,19 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   String? uid;
   String? email;
   String? name;
   int? phoneNumber;
+  String? userRole;
 
-  UserModel({this.uid, this.email, this.name, this.phoneNumber});
+  UserModel({this.uid, this.email, this.name, this.phoneNumber,this.userRole});
 
   // receiving data from server
-  factory UserModel.fromMap(map) {
-    return UserModel(
-      uid: map['uid'],
-      email: map['email'],
-      name: map['name'],
-      phoneNumber: map['phoneNumber'],
+  static UserModel fromSnapshot(DocumentSnapshot snap) {
+    UserModel usermodel = UserModel(
+      uid: snap['uid'],
+      email: snap['email'],
+      name: snap['name'],
+      phoneNumber: snap['phoneNumber'],
+      userRole: snap['userRole'],
     );
+    return usermodel;
   }
 
   // sending data to our server
@@ -23,6 +28,7 @@ class UserModel {
       'email': email,
       'name': name,
       'phoneNumber': phoneNumber,
+      'userRole':userRole,
     };
   }
 }

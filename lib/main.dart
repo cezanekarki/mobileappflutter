@@ -4,8 +4,10 @@ import 'package:admission_system/screens/email_templates.dart';
 import 'package:admission_system/screens/loginscreen.dart';
 //import 'package:admission_system/screens/message_template.dart';
 import 'package:admission_system/screens/splashscreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,13 +20,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Admission System',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const admissionpage(),
+      //home: const SplashScreen(),
+      home: StreamBuilder(stream: FirebaseAuth.instance.authStateChanges(), builder: (ctx, userSnapshot) {
+        if (userSnapshot.hasData) {
+           return admissionpage();
+         }
+         return SplashScreen();
+       }),
     ); 
   }
 }

@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'admissionpage.dart';
 import 'loginscreen.dart';
 
 
@@ -29,6 +31,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushReplacement(context, MaterialPageRoute(
         builder: (context) => const AdmissionLogin()
     ));
+
+
   }
 
   @override

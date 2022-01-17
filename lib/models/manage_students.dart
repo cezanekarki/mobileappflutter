@@ -9,16 +9,18 @@ class add_new_students{
   String? province;
   String? district;
   String? channel;
+  String? subject;
   String? source;
   String? sub_source;
   String? status;
-  String? sub_status;
+  String? father_name;
+  String? mother_name;
 
-  create_newstudent() {
-    DocumentReference documentReference =
-    FirebaseFirestore.instance.collection("Student Details").doc(name);
-
-    Map<String, Object?> studentsDetails={
+  create_newstudent(name, email, phone_number,whatsapp_number,gender,province,district, channel,subject,source,sub_source,status,father_name,mother_name) {
+    var Document = FirebaseFirestore.instance.collection("Student Details").doc();
+    Document.set(
+   {
+      "id":Document.id,
       "Name":name,
       "E-mail":email,
       "Phone Number":phone_number,
@@ -27,19 +29,22 @@ class add_new_students{
       "Province":province,
       "District":district,
       "Channel":channel,
+      "Subject":subject,
       "Source":source,
       "Sub-source":sub_source,
       "Status":status,
-      "Sub-status":sub_status
-    };
-    documentReference.set(studentsDetails).whenComplete(() => print("Data Stored Successfully"));
+      "Father-name":father_name,
+      "Mother-name":mother_name
+    }
+    );
+
   }
   detele_student_details(item){
    DocumentReference documentReference=FirebaseFirestore.instance.collection("Student Details").doc(item);
    documentReference.delete().whenComplete(() => print("Deleted Successfully"));
   }
-  update_date(){
-  DocumentReference documentReference=FirebaseFirestore.instance.collection("Student Details").doc(name);
+  update_data(name, email, phone_number,whatsapp_number,gender,province,district, channel,subject,source,sub_source,status,father_name,mother_name,item){
+  DocumentReference documentReference=FirebaseFirestore.instance.collection("Student Details").doc(item);
   Map<String, Object?> studentsDetails={
     "Name":name,
     "E-mail":email,
@@ -49,10 +54,12 @@ class add_new_students{
     "Province":province,
     "District":district,
     "Channel":channel,
+    "Subject":subject,
     "Source":source,
     "Sub-source":sub_source,
     "Status":status,
-    "Sub-status":sub_status
+    "Father-name":father_name,
+    "Mother-name":mother_name
   };
   documentReference.update(studentsDetails).whenComplete(() => print("Data Updated Successfully"));
 

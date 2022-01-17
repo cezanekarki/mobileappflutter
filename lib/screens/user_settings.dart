@@ -1,4 +1,6 @@
 import 'package:admission_system/Controllers/drawer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -7,11 +9,44 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  bool showPassword = false;
+
+  void initState(){
+    super.initState();
+    currentUser();
+
+  }
+
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  String myId='';
+  String myName='';
+  String myph='';
+  String location='';
+
+  void currentUser(){
+    User? user = _firebaseAuth.currentUser;
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .snapshots()
+        .listen((userData) {
+      setState(() {
+        myId = userData.data()?['uid'];
+        myName = userData.data()?['name'];
+        myph = userData.data()?['email'];
+        location = userData.data()?['userRole'];
+      });
+    });
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Edit Profile"),
       ),
       drawer: MyDrawer(),
       body: Container(
@@ -78,10 +113,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "Dor Alex", false),
-              buildTextField("E-mail", "alexd@gmail.com", false),
-              buildTextField("Password", "********", true),
-              buildTextField("Location", "TLV, Israel", false),
+              buildTextField("Full Name", false,myName),
+              buildTextField("Phone Number", false,myph),
+              buildTextField("Location", false,location),
+
               SizedBox(
                 height: 35,
               ),
@@ -100,7 +135,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             color: Colors.black)),
                   ),
                   RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      print(myName);
+                    },
                     color: Colors.green,
                     padding: EdgeInsets.symmetric(horizontal: 50),
                     elevation: 2,
@@ -123,30 +160,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
-  Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
+  Widget buildTextField(String labelText, bool isPasswordTextField,controllervalue) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextField(
-        obscureText: isPasswordTextField ? showPassword : false,
+      child: TextFormField(
+        initialValue: controllervalue,
+        onSaved: (input) => controllervalue = input,
         decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-              onPressed: () {
-                setState(() {
-                  showPassword = !showPassword;
-                });
-              },
-              icon: Icon(
-                Icons.remove_red_eye,
-                color: Colors.grey,
-              ),
-            )
-                : null,
             contentPadding: EdgeInsets.only(bottom: 3),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
             hintStyle: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,

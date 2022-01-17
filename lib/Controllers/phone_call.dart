@@ -1,13 +1,15 @@
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 class makephonecalls{
   late final url;
   void makingPhoneCall(String phonenumber) async {
-    url = 'tel:'+phonenumber;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+    try {
+      await FlutterPhoneDirectCaller.callNumber(phonenumber);
+    }
+    catch (e){
+      print("Error is $e");
     }
   }
 }

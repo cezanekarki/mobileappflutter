@@ -1,4 +1,5 @@
 import 'package:admission_system/screens/admissionpage.dart';
+import 'package:admission_system/screens/loginscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,23 +8,23 @@ import 'package:get/get.dart';
 import 'navigator.dart';
 
 
-class auth_control extends GetxController{
+class auth_control{
   //static auth_control instance = Get.find();
   FirebaseAuth auth = FirebaseAuth.instance;
   String? errorMessage;
+  get user => auth.currentUser;
 
   Future<void> signOut() async {
-    await FirebaseAuth.instance.signOut();
+    await auth.signOut();
   }
 
-  Future<void> signIn(String email, String password) async {
+  Future signIn({required String email, required String password}) async {
       try {
          await auth
-            .signInWithEmailAndPassword(email: email, password: password).then((uid) => {
-          Get.to(admissionpage())
-         });
-
+            .signInWithEmailAndPassword(email: email, password: password);
+         return null;
       } on FirebaseAuthException catch (error) {
+        //return error.message;
         switch (error.code) {
           case "invalid-email":
             errorMessage = "Your email address appears to be malformed.";
@@ -53,8 +54,10 @@ class auth_control extends GetxController{
             errorMessage = "An undefined Error happened.";
             print(errorMessage);
         }
-        Fluttertoast.showToast(msg: errorMessage!);
         print(error.code);
+        return errorMessage!;
+        Fluttertoast.showToast(msg: errorMessage!);
+
       }
 
     }

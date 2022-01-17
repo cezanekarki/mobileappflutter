@@ -96,7 +96,7 @@ class _messages_tempState extends State<messages_temp> {
             }
             else{
               return GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), itemBuilder: (_,index){
-                child: snapshot.data?.docs.map((doc) {
+
                   return Container(
 
                     margin: EdgeInsets.all(7),
@@ -106,7 +106,7 @@ class _messages_tempState extends State<messages_temp> {
 
                 }
                 );
-              });
+
             }
           }
       )

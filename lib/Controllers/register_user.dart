@@ -21,7 +21,8 @@ class reg_user extends GetxController {
       try {
         await _auth
             .createUserWithEmailAndPassword(email: email, password: password)
-            .then((value) => {postDetailsToFirestore(name, phone)})
+            .then((value) => {postDetailsToFirestore(name, phone),
+        })
             .catchError((e) {
           Fluttertoast.showToast(msg: e!.message);
         });
@@ -59,12 +60,13 @@ class reg_user extends GetxController {
     User? user = _auth.currentUser;
 
     UserModel userModel = UserModel();
-
+    user!.updateDisplayName(name);
     // writing all the values
-    userModel.email = user!.email;
+    userModel.email = user.email;
     userModel.uid = user.uid;
     userModel.name = name;
     userModel.phoneNumber = phone;
+    userModel.userRole="User";
 
     await firebaseFirestore
         .collection("users")

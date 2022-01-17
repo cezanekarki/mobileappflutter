@@ -2,7 +2,7 @@ import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class email_sender{
-  void send_email(String email_body, String email_subject, String email_recipients)async{
+  Future send_email(String email_body, String email_subject, String email_recipients)async{
     final Email email = Email(
       body: email_body,
       subject: email_subject,
@@ -11,9 +11,11 @@ class email_sender{
     );
   try {
     await FlutterEmailSender.send(email);
+    return null;
   }
   catch (error){
     Fluttertoast.showToast(msg: "Email not sent");
+    print(error);
   }
   finally{
     Fluttertoast.showToast(msg: "Email sent!");
