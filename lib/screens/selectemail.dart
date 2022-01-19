@@ -19,6 +19,9 @@ class _selectemailState extends State<selectemail> {
   final emailController = Get.put(EmailController());
   String email =Get.arguments.email.toString();
   late final int index;
+  void dispose(){
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,7 +131,9 @@ class _selectemailState extends State<selectemail> {
                 Align(
                 alignment: Alignment.bottomCenter,
           child: RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           child: const Text('Back', style: TextStyle(fontSize: 20)),
           color: Colors.blue,
           textColor: Colors.white,

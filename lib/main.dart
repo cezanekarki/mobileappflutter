@@ -1,8 +1,5 @@
-import 'package:admission_system/screens/add_user.dart';
+
 import 'package:admission_system/screens/admissionpage.dart';
-import 'package:admission_system/screens/email_templates.dart';
-import 'package:admission_system/screens/loginscreen.dart';
-//import 'package:admission_system/screens/message_template.dart';
 import 'package:admission_system/screens/splashscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

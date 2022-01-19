@@ -13,6 +13,9 @@ class studentsData extends StatefulWidget {
 }
 
 class _studentsDataState extends State<studentsData> {
+  void dispose(){
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -24,27 +24,26 @@ class _add_usersState extends State<add_users> {
   void _submit(){
     FocusScope.of(context).unfocus();
     var parsedvalue = int.parse(phoneNumberEditingController.text);
-    String email_receipents=emailEditingController.text;
+    String email_receipents=emailEditingController.text.trim();
     String email_subject="Email and password for PCPS System account";
     String email_body ="The password for the account ${nameEditingController.text}, (${emailEditingController.text}) is ${passwordEditingController.text}. Please change the password after the login.";
     try{
-      ru.signUp(emailEditingController.text, passwordEditingController.text, nameEditingController.text, parsedvalue);
-      email_sender().send_email(email_body, email_subject, email_receipents).then((result) => {
-        if (result==null){
-          Fluttertoast.showToast(msg: "Email sent")
-        }
-        /*else{
-          //Fluttertoast.showToast(msg: result)
-        }*/
-      });
-    }
+      ru.signUp(emailEditingController.text.trim(), passwordEditingController.text, nameEditingController.text, parsedvalue);
+      }
+      catch (e){
+      Fluttertoast.showToast(msg: "Error adding user");
+      }
     finally{
+      email_sender().send_email(email_body, email_subject, email_receipents);
+      Fluttertoast.showToast(msg: "User Added");
       clear_text();
     }
+    }
 
-  }
 
-  String? validateName(String value) {
+
+
+  String? validateName(String? value) {
     RegExp regex = RegExp(r'^.{3,}$');
     if (value!.isEmpty) {
       return ("First Name cannot be Empty");
@@ -55,7 +54,7 @@ class _add_usersState extends State<add_users> {
     return null;
   }
 
-  String? validateEmail(String value){
+  String? validateEmail(String? value){
     if (value!.isEmpty) {
       return ("Please Enter Your Email");
     }
@@ -67,7 +66,7 @@ class _add_usersState extends State<add_users> {
     return null;
   }
 
-  String? validatePassword(String value){
+  String? validatePassword(String? value){
     RegExp regex =  RegExp(r'^.{6,}$');
     if (value!.isEmpty) {
       return ("Password is required for login");
@@ -174,7 +173,7 @@ class _add_usersState extends State<add_users> {
                       ),
                       onChanged: null,
                       decoration: InputDecoration(
-                        errorText: validateEmail(emailEditingController.text),
+                        //errorText: validateEmail(emailEditingController.text),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                           borderSide: const BorderSide(
@@ -305,6 +304,9 @@ class _add_usersState extends State<add_users> {
     passwordEditingController.clear();
     phoneNumberEditingController.clear();
 }
+  void dispose(){
+    super.dispose();
+  }
 
 }
 

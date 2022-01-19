@@ -8,6 +8,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 class showdata extends StatelessWidget {
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(

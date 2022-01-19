@@ -22,6 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     timeController();
   }
+  void dispose(){
+    super.dispose();
+  }
 
   timeController() async{
     var timing = const Duration(seconds: 2);

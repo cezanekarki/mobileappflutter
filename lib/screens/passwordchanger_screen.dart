@@ -15,6 +15,9 @@ class _passwordChangeState extends State<passwordChange> {
   final oldpassword=TextEditingController();
   final newpassword=TextEditingController();
   final confirmnewpassword=TextEditingController();
+  void dispose(){
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
      return AlertDialog(

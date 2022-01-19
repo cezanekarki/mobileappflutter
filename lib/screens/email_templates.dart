@@ -1,6 +1,7 @@
 import 'package:admission_system/Controllers/drawer.dart';
 import 'package:admission_system/Controllers/emaildata_controller.dart';
 import 'package:admission_system/models/email.dart';
+import 'package:admission_system/screens/edit_email.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,9 @@ class email_template extends StatefulWidget {
 }
 
 class _email_templateState extends State<email_template> {
+  void dispose(){
+    super.dispose();
+  }
   final emailController = Get.put(EmailController());
   final titleController = TextEditingController();
   final subjectController = TextEditingController();
@@ -144,7 +148,9 @@ class _email_templateState extends State<email_template> {
                                               margin:
                                               const EdgeInsets.only(top: 20),
                                               child: IconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                Get.to(editEmail(),arguments: emailController.emailsdata[index]);
+                                                },
                                                 icon: Icon(
                                                   Icons.edit,
                                                   color: Colors.blueGrey,
@@ -210,6 +216,7 @@ class _email_templateState extends State<email_template> {
       ],
     );
   }
+
 }
 
 

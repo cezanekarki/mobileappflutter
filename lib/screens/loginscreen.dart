@@ -33,8 +33,11 @@ class _AdmissionLoginState extends State<AdmissionLogin> {
   void initState() {
     super.initState();
   }
+  void dispose(){
+    super.dispose();
+  }
 
-  Future _submit(email,password,{bool remember = false} ) async{
+   _submit(email,password,{bool remember = false} ) async{
     FocusScope.of(context).unfocus();
     final form = _formKey.currentState;
     if (form!.validate()) {
@@ -49,24 +52,15 @@ class _AdmissionLoginState extends State<AdmissionLogin> {
       }
       });
     }
-    if (remember) {
-      await (await SessionParams.getSession())
-          .saveSession(email, password);
+
+      await (await SessionParams.getSession()).saveSession(email, password);
       return true;
-    }
+
   }
 
-  Future<void> loginWithBiometrics()async {
-    try {
+    loginWithBiometrics()async {
       var session = await SessionParams.getSession();
-      var authenticate = await _authenticate();
-
-      if (authenticate) {
-        _submit(session.user, session.password, remember: true);
-      }
-    } catch (e) {
-      print('Something went wrong️');
-    }
+      _authenticate().then((value) => _submit(session.user, session.password, remember: true));
   }
 
 
@@ -95,7 +89,8 @@ class _AdmissionLoginState extends State<AdmissionLogin> {
 
       setState(
               () =>
-          _authorized = authenticated ? 'Authorized' : 'Not Authorized');
+          _authorized = authenticated ? 'Authorized' : 'Not Authorized',
+      );
     }
 
     Future<void> _authenticateWithBiometrics() async {
@@ -303,7 +298,9 @@ class _AdmissionLoginState extends State<AdmissionLogin> {
                             borderRadius: BorderRadius.circular(50.0)),
                         minimumSize: const Size(300, 50),
                       ),
-                      onPressed: _authenticate,
+                      onPressed:(){
+                        loginWithBiometrics();
+                      } ,
                       child: const Text("Biometrics"),
                     ),
                   ),

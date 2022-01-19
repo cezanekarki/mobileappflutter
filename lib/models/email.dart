@@ -23,7 +23,6 @@ class manage_emails{
     DocumentReference documentReference =
     FirebaseFirestore.instance.collection("EmailTemplate").doc(title);
     Map<String, Object?> Email_details={
-      "Title":title,
       "Subject":subject,
       "Message":message
     };

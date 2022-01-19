@@ -13,20 +13,20 @@ class studentdataEdit extends StatefulWidget {
 }
 
 class _studentdataEditState extends State<studentdataEdit> {
-  String name =Get.arguments.name.toString();
-  String email=Get.arguments.email.toString();
-  String phone_number =Get.arguments.phone_number.toString();
-  String whatsapp_number=Get.arguments.whatsapp_number.toString();
-  String gender =Get.arguments.gender.toString();
-  String province=Get.arguments.province.toString();
-  String district =Get.arguments.district.toString();
-  String channel=Get.arguments.channel.toString();
-  String subject =Get.arguments.subject.toString();
-  String source=Get.arguments.source.toString();
-  String sub_source =Get.arguments.sub_source.toString();
-  String status=Get.arguments.status.toString();
-  String father_name =Get.arguments.father_name.toString();
-  String mother_name=Get.arguments.mother_name.toString();
+  String name = Get.arguments.name.toString();
+  String email = Get.arguments.email.toString();
+  String phone_number = Get.arguments.phone_number.toString();
+  String whatsapp_number = Get.arguments.whatsapp_number.toString();
+  String gender = Get.arguments.gender.toString();
+  String province = Get.arguments.province.toString();
+  String district = Get.arguments.district.toString();
+  String channel = Get.arguments.channel.toString();
+  String subject = Get.arguments.subject.toString();
+  String source = Get.arguments.source.toString();
+  String sub_source = Get.arguments.sub_source.toString();
+  String status = Get.arguments.status.toString();
+  String father_name = Get.arguments.father_name.toString();
+  String mother_name = Get.arguments.mother_name.toString();
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
@@ -75,10 +75,15 @@ class _studentdataEditState extends State<studentdataEdit> {
     ];
     return menuItems;
   }
+
+  void dispose(){
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset : false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
@@ -86,14 +91,11 @@ class _studentdataEditState extends State<studentdataEdit> {
         ),
         title: const Text("Students Data"),
       ),
-      body:Column(
+      body: Column(
         children: [
           Container(
-            height: MediaQuery
-          .of(context)
-          .size
-          .height * 0.750,
-        width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.750,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: Colors.grey[200],
@@ -104,39 +106,728 @@ class _studentdataEditState extends State<studentdataEdit> {
                     color: Color(0xffEEEEEE)),
               ],
             ),
-            margin: const EdgeInsets.only(
-                left: 20, right: 20, top: 20),
-            padding: const EdgeInsets.only(left: 20,
-                right: 20),
+            margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  datashowing("Name:", name),
-                  datashowing("Email:", email),
-                  dropdown("Gender:","Gender", gender,"Select a Gender",dropdownItems),
-                  dropdown("Subject:","Subject", subject,"Select a subject",subjectItems),
-                  datashowing("Phone Number:", phone_number),
-                  datashowing("Father's Name:", father_name),
-                  datashowing("Mother's Name:", mother_name),
-                  datashowing("Whatsapp Number:", whatsapp_number),
-                  datashowing("Channel:", channel),
-                  dropdown("Status:","Status", status,"Select Status",statusItems),
-                  datashowing("Source:", source),
-                  datashowing("Sub Source:", sub_source),
-                  dropdown("Province:","Province", province,"Select a Province",provinceItems),
-                  datashowing("District:", district),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Name",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(left: 7, top: 15),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: TextFormField(
+                          initialValue: name,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              name = newValue!;
+                            });
+                          },
+                          /*onSaved: (input) => value = input!,*/
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            /*icon: Icon(
+                              Icons.,
+                              color: Color(0xff6dd5fa),
+                            ),*/
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Email",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(left: 7, top: 15),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: TextFormField(
+                          initialValue: email,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              email = newValue!;
+                            });
+                          },
+                          /*onSaved: (input) => value = input!,*/
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            /*icon: Icon(
+                              Icons.,
+                              color: Color(0xff6dd5fa),
+                            ),*/
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Gender",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(top: 15),
+                        padding: const EdgeInsets.only(left: 10, top: 3),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: DropdownButton(
+                            isExpanded: true,
+                            isDense: false,
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: Colors.blueAccent,
+                            value: gender,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                gender = newValue!;
+                              });
+                            },
+                            items: dropdownItems),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Subject",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(top: 15),
+                        padding: const EdgeInsets.only(left: 10, top: 3),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: DropdownButton(
+                            isExpanded: true,
+                            isDense: false,
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: Colors.blueAccent,
+                            value: subject,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                subject = newValue!;
+                              });
+                            },
+                            items: subjectItems),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Phone Number",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(left: 7, top: 15),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: TextFormField(
+                          initialValue: phone_number,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              phone_number = newValue!;
+                            });
+                          },
+                          /*onSaved: (input) => value = input!,*/
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            /*icon: Icon(
+                              Icons.,
+                              color: Color(0xff6dd5fa),
+                            ),*/
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Father's Name",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(left: 7, top: 15),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: TextFormField(
+                          initialValue: father_name,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              father_name = newValue!;
+                            });
+                          },
+                          /*onSaved: (input) => value = input!,*/
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            /*icon: Icon(
+                              Icons.,
+                              color: Color(0xff6dd5fa),
+                            ),*/
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Mother's Name",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(left: 7, top: 15),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: TextFormField(
+                          initialValue: mother_name,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              mother_name = newValue!;
+                            });
+                          },
+                          /*onSaved: (input) => value = input!,*/
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            /*icon: Icon(
+                              Icons.,
+                              color: Color(0xff6dd5fa),
+                            ),*/
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Whatsapp Number",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(left: 7, top: 15),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: TextFormField(
+                          initialValue: whatsapp_number,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              whatsapp_number = newValue!;
+                            });
+                          },
+                          /*onSaved: (input) => value = input!,*/
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            /*icon: Icon(
+                              Icons.,
+                              color: Color(0xff6dd5fa),
+                            ),*/
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Channel",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(left: 7, top: 15),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: TextFormField(
+                          initialValue: channel,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              channel = newValue!;
+                            });
+                          },
+                          /*onSaved: (input) => value = input!,*/
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            /*icon: Icon(
+                              Icons.,
+                              color: Color(0xff6dd5fa),
+                            ),*/
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
 
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Status",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(top: 15),
+                        padding: const EdgeInsets.only(left: 10, top: 3),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: DropdownButton(
+                            isExpanded: true,
+                            isDense: false,
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: Colors.blueAccent,
+                            value: status,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                status = newValue!;
+                              });
+                            },
+                            items: statusItems),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Source",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(left: 7, top: 15),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: TextFormField(
+                          initialValue: source,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              source = newValue!;
+                            });
+                          },
+                          /*onSaved: (input) => value = input!,*/
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            /*icon: Icon(
+                              Icons.,
+                              color: Color(0xff6dd5fa),
+                            ),*/
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Sub source",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(left: 7, top: 15),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: TextFormField(
+                          initialValue: sub_source,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              sub_source = newValue!;
+                            });
+                          },
+                          /*onSaved: (input) => value = input!,*/
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            /*icon: Icon(
+                              Icons.,
+                              color: Color(0xff6dd5fa),
+                            ),*/
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Province",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(top: 15),
+                        padding: const EdgeInsets.only(left: 10, top: 3),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: DropdownButton(
+                            isExpanded: true,
+                            isDense: false,
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: Colors.blueAccent,
+                            value: province,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                province = newValue!;
+                              });
+                            },
+                            items: provinceItems),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 90,
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "District",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.500,
+                        margin: const EdgeInsets.only(left: 7, top: 15),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        height: 54,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.blueGrey,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Color(0xffEEEEEE)),
+                          ],
+                        ),
+                        child: TextFormField(
+                          initialValue: district,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              district = newValue!;
+                            });
+                          },
+                          /*onSaved: (input) => value = input!,*/
+                          decoration: InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            /*icon: Icon(
+                              Icons.,
+                              color: Color(0xff6dd5fa),
+                            ),*/
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
 
                 ],
               ),
-
             ),
           ),
           Row(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-
               Padding(
                 padding: const EdgeInsets.all(17.0),
                 child: ElevatedButton(
@@ -169,13 +860,25 @@ class _studentdataEditState extends State<studentdataEdit> {
                   ),
                   onPressed: () {
                     try {
-                     add_new_students().update_data(name,email,phone_number,whatsapp_number,gender,province,
-                         district,channel,subject,source,sub_source,status,
-                         father_name,mother_name,Get.arguments.id);
+                      add_new_students().update_data(
+                          name,
+                          email,
+                          phone_number,
+                          whatsapp_number,
+                          gender,
+                          province,
+                          district,
+                          channel,
+                          subject,
+                          source,
+                          sub_source,
+                          status,
+                          father_name,
+                          mother_name,
+                          Get.arguments.id);
                       Fluttertoast.showToast(msg: "Data updated successfully!");
                       Navigator.pop(context);
-                    }
-                    catch (e){
+                    } catch (e) {
                       Fluttertoast.showToast(msg: "Error updating data!");
                     }
                   },
@@ -185,135 +888,7 @@ class _studentdataEditState extends State<studentdataEdit> {
             ],
           ),
         ],
-
       ),
-
-
-
-
-    );
-  }
-
-  Widget datashowing(String labelText,String value){
-    return Row(
-      mainAxisAlignment:
-      MainAxisAlignment.spaceEvenly,
-      children: [
-
-        Column(
-          children: [
-            Container(
-              width: 90,
-              margin: const EdgeInsets.only(top: 10),
-              child: Text(
-                labelText,
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
-          ],
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width*0.500,
-          margin: const EdgeInsets.only( left:7,top: 15),
-          padding: const EdgeInsets.only(left:20, right: 20),
-          height: 54,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: Colors.blueGrey,
-            boxShadow: const [
-              BoxShadow(
-                  offset: Offset(0, 10),
-                  blurRadius: 50,
-                  color: Color(0xffEEEEEE)
-              ),
-            ],
-          ),
-          child: TextFormField(
-            initialValue: value,
-            onSaved: (input) => value = input!,
-            decoration: InputDecoration(
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              /*icon: Icon(
-                              Icons.,
-                              color: Color(0xff6dd5fa),
-                            ),*/
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget dropdown(String labelText,String drptext,String defvalue,String nullvaluedef,List<DropdownMenuItem<String>>? showitems){
-    return Row(
-      mainAxisAlignment:
-      MainAxisAlignment.spaceEvenly,
-      children: [
-
-        Column(
-          children: [
-            Container(
-
-              width: 90,
-              margin: const EdgeInsets.only(top: 10),
-              child: Text(
-                labelText,
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
-          ],
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width*0.500,
-          margin: const EdgeInsets.only(top: 15),
-          padding: const EdgeInsets.only(left:10,top: 3),
-          height: 54,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: Colors.blueGrey,
-            boxShadow: const [
-              BoxShadow(
-                  offset: Offset(0, 10),
-                  blurRadius: 50,
-                  color: Color(0xffEEEEEE)
-              ),
-            ],
-          ),
-          child: DropdownButton(
-              isExpanded:true,
-              isDense: false,
-              /*decoration: InputDecoration(
-                hintText: drptext,
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue, width: 1),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue, width: 1),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                filled: true,
-                fillColor: Colors.blueAccent,
-              ),*/
-              /*validator: (value) =>
-              value == null ? nullvaluedef : null,*/
-              borderRadius: BorderRadius.circular(20),
-
-              dropdownColor: Colors.blueAccent,
-              value: defvalue,
-              onChanged: (String? newValue) {
-                setState(() {
-                  defvalue = newValue!;
-                });
-              },
-              items: showitems),
-        ),
-      ],
     );
   }
 }

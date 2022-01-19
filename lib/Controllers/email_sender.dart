@@ -17,8 +17,6 @@ class email_sender{
     Fluttertoast.showToast(msg: "Email not sent");
     print(error);
   }
-  finally{
-    Fluttertoast.showToast(msg: "Email sent!");
-  }
+
   }
 }

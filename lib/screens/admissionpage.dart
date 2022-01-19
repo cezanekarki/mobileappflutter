@@ -2,10 +2,10 @@ import 'package:admission_system/Controllers/drawer.dart';
 import 'package:admission_system/Controllers/phone_call.dart';
 import 'package:admission_system/Controllers/studentdata_controller.dart';
 import 'package:admission_system/models/manage_students.dart';
+import 'package:admission_system/models/shared_preferences.dart';
 import 'package:admission_system/screens/selectemail.dart';
 import 'package:admission_system/screens/studentdata_edit.dart';
 import 'package:admission_system/screens/students_data.dart';
-import 'package:admission_system/services/studentsfirebase_db.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,6 +20,14 @@ class admissionpage extends StatefulWidget {
 }
 
 class _admissionpageState extends State<admissionpage> {
+  @override
+  void initState(){
+    super.initState();
+
+  }
+  void dispose(){
+    super.dispose();
+  }
   final studentController = Get.put(StudentController());
   final nameController = TextEditingController();
   final emailController = TextEditingController();
