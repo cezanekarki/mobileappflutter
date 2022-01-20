@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:admission_system/Controllers/drawer.dart';
 import 'package:admission_system/Controllers/email_sender.dart';
 import 'package:admission_system/Controllers/register_user.dart';
 import 'package:flutter/material.dart';
@@ -80,11 +81,8 @@ class _add_usersState extends State<add_users> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+        drawer: MyDrawer(),
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
           title: const Text("Add Users"),
         ),
       body: SafeArea(

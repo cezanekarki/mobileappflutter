@@ -28,17 +28,19 @@ class _showUserState extends State<showUser> {
       appBar: AppBar(
         title: const Text("User Data"),
       ),
-      body: Column(
-        children: [
-          Container(
-            child: Obx(
-                  () => Container(
-                    height: MediaQuery.of(context).size.height * 0.895,
-                    child: usersdata(userController.userdata.length),
-                  )
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              child: Obx(
+                    () => Container(
+                      height: MediaQuery.of(context).size.height * 0.900,
+                      child: usersdata(userController.userdata.length),
+                    )
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -67,7 +69,7 @@ class _showUserState extends State<showUser> {
                         left: 20, right: 20, top: 20),
                     padding:
                     const EdgeInsets.only(left: 20, right: 20),
-                    height: MediaQuery.of(context).size.height * 0.190,
+                    height: MediaQuery.of(context).size.height * 0.140,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.grey[200],
@@ -129,23 +131,6 @@ class _showUserState extends State<showUser> {
                                 ),
                               ),
                             ),
-                            /*Container(
-                              child: IconButton(
-                                onPressed: () {
-                                },
-                                icon: Icon(
-                                  Icons.delete,
-                                  color: Colors.redAccent,
-                                ),
-                              ),
-                            ),*/
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ElevatedButton(onPressed: (){
-
-                            },
-                                child: Text("Delete User"))
                           ],
                         ),
 

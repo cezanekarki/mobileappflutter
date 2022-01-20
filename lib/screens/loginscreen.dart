@@ -52,10 +52,8 @@ class _AdmissionLoginState extends State<AdmissionLogin> {
       }
       });
     }
-
       await (await SessionParams.getSession()).saveSession(email, password);
       return true;
-
   }
 
     loginWithBiometrics()async {

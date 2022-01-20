@@ -73,7 +73,6 @@ class _admissionpageState extends State<admissionpage> {
         break;
 
     }
-    print(displayData);
     return displayData;
   }
   @override
